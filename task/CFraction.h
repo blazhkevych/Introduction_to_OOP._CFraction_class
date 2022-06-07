@@ -9,9 +9,9 @@ public:
 	int getWhole() { return whole; }
 	int getNumerator() { return numerator; }
 	int getDenominator() { return denominator; }
-	int setWhole(int whl) { whole = whl; }
-	int setNumerator(int nmrtr) { numerator = nmrtr; }
-	int setDenominator(int dnmntr) { denominator = dnmntr; }
+	void setWhole(int whl) { whole = whl; }
+	void setNumerator(int nmrtr) { numerator = nmrtr; }
+	void setDenominator(int dnmntr) { denominator = dnmntr; }
 
 	// Функция вычисляет наибольший общий делитель целых чисел (сокращенно НОД)
 	int GCD(int a, int b) { return b == 0 ? a : GCD(b, a % b); }
@@ -19,19 +19,25 @@ public:
 	int LCM(int a, int b) { return (a * b) / GCD(a, b); }
 
 	// конструктор по умолчанию
-	CFraction() {};
+	CFraction()
+	{
+		whole = 0;
+		numerator = 1;
+		denominator = 2;
+	};
 	// конструктор без целой части
 	CFraction(int nmrtr, int dnmntr)
 	{
-		numerator = setNumerator(nmrtr);
-		denominator = setDenominator(dnmntr);
+		whole = 0;
+		numerator = nmrtr;
+		denominator = dnmntr;
 	};
 	// конструктор с целой частью
 	CFraction(int whl, int nmrtr, int dnmntr)
 	{
-		whole = setWhole(whl);
-		numerator = setNumerator(nmrtr);
-		denominator = setDenominator(dnmntr);
+		whole = whl;
+		numerator = nmrtr;
+		denominator = dnmntr;
 	};
 };
 
@@ -39,10 +45,10 @@ public:
 CFraction FractReduction(CFraction f);
 
 // Функция превращения неправильной дроби в смешанное число.
-CFraction ConvIncorCFractToMixNum(CFraction f);
+CFraction ConvIncorFractToMixNum(CFraction f);
 
 // Функция превращения смешанного числа в неправильную дробь.
-CFraction ConvMixedNumToIncorrCFract(CFraction f);
+CFraction ConvMixedNumToIncorrFract(CFraction f);
 
 // Функция реализующая операцию сложения
 CFraction AdditionOfFractions(CFraction f1, CFraction f2);

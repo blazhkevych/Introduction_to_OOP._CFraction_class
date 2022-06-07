@@ -121,7 +121,7 @@ void Print(CFraction f)
 }
 
 // Функция выполняет вычитание дробей
-CFraction CFractionSubtraction(CFraction f1, CFraction f2)
+CFraction FractionSubtraction(CFraction f1, CFraction f2)
 {
 	CFraction f1Copy = f1;
 	CFraction f2Copy = f2;
