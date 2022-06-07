@@ -1,20 +1,79 @@
-/*
+﻿/*
+				Введение в ООП. Класс CFraction.
+	Разработать класс CFraction. Обеспечить класс конструктором, а
+также всеми необходимыми методами-аксессорами. Предусмотреть в
+классе метод выделения целой части, а также метод перевода дроби в
+вещественное число. Написать функции, реализующие операции
+сложения, вычитания, умножения и деления дробей. Эти функции должны
+принимать в качестве входных параметров две дроби (два объекта класса
+CFraction) и возвращать объект класса CFraction в качестве результата.
 
+Статус: не закончено.
 */
+
+// за классом:
+/*
+функции, реализующие операции
+сложения, вычитания, умножения и деления дробей. (в качестве входных параметров две дроби (два объекта класса
+CFraction) и возвращать объект класса CFraction в качестве результата.)
+
+переделать все доступа к полям, к которым обращались напрямую, на доступ через аксессоры
+*/
+
 #include <iostream>
+#include "CFraction.h"
+using std::cout;
+using std::cin;
+using std::endl;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	// создать две дроби (вводит) пользователь
+	// использовать функции сложения, вычитания, умножения и деления дробей
+
+	CFraction f1{}, f2{}, result{};
+	char action; // действие с дробями
+
+	char answer{ 0 }; // Do you want to continue?
+
+	do
+	{
+		cout << "Enter first fraction.\n";
+		Input(f1);
+
+		cout << "Enter an action: ";
+		cin >> action;
+
+		cout << "Enter second fraction.\n";
+		Input(f2);
+
+		switch (action)
+		{
+		case '+':
+			result = AdditionOfFractions(f1, f2);
+			break;
+
+		case '-':
+			result = FractionSubtraction(f1, f2);
+			break;
+
+		case '*':
+			result = Multiplication(f1, f2);
+			break;
+
+		case '/':
+			result = Division(f1, f2);
+			break;
+		}
+
+		Print(result);
+
+		cout << endl;
+		cout << "Do you want to continue? ( y (yes) / n (no) )\n";
+		cin >> answer;
+		cout << endl;
+
+	} while (answer == 'y');
+
+	return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
