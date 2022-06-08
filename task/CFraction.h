@@ -13,11 +13,6 @@ public:
 	void setNumerator(int nmrtr) { numerator = nmrtr; }
 	void setDenominator(int dnmntr) { denominator = dnmntr; }
 
-	// Функция вычисляет наибольший общий делитель целых чисел (сокращенно НОД)
-	int GCD(int a, int b) { return b == 0 ? a : GCD(b, a % b); }
-	// Функция вычисляет наименьшее общее кратное (сокращенно НОК)
-	int LCM(int a, int b) { return (a * b) / GCD(a, b); }
-
 	// конструктор по умолчанию
 	CFraction()
 	{
@@ -40,6 +35,12 @@ public:
 		denominator = dnmntr;
 	};
 };
+
+// Функция вычисляет наибольший общий делитель целых чисел (сокращенно НОД)
+int GCD(int a, int b);
+
+// Функция вычисляет наименьшее общее кратное (сокращенно НОК)
+int LCM(int a, int b);
 
 // Функция сокращения дробей
 CFraction FractReduction(CFraction f);

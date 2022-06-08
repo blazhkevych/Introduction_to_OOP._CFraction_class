@@ -6,12 +6,24 @@ using std::endl;
 
 // http://spacemath.xyz/deistviya_s_drobyami/
 
+// Функция вычисляет наибольший общий делитель целых чисел (сокращенно НОД)
+int GCD(int a, int b)
+{
+	return b == 0 ? a : GCD(b, a % b);
+}
+
+// Функция вычисляет наименьшее общее кратное (сокращенно НОК)
+int LCM(int a, int b)
+{
+	return (a * b) / GCD(a, b);
+}
+
 // Функция сокращения дробей
 CFraction FractReduction(CFraction f)
 {
 	CFraction result{};
 
-	int nod = f.GCD(f.getNumerator(), f.getDenominator());
+	int nod = GCD(f.getNumerator(), f.getDenominator());
 	if (nod == 1)
 		return f;
 	else
@@ -80,7 +92,7 @@ CFraction AdditionOfFractions(CFraction f1, CFraction f2)
 	// Сложение дробей с разными знаменателями
 	else if (f1Copy.getDenominator() != f2Copy.getDenominator())
 	{
-		int nok = f1.LCM(f1Copy.getDenominator(), f2Copy.getDenominator());
+		int nok = LCM(f1Copy.getDenominator(), f2Copy.getDenominator());
 
 		result.setNumerator((nok / f1Copy.getDenominator() * f1Copy.getNumerator()) + (nok / f2Copy.getDenominator() * f2Copy.getNumerator()));
 		result.setDenominator(nok);
@@ -142,7 +154,7 @@ CFraction FractionSubtraction(CFraction f1, CFraction f2)
 	// Вычитание обычных дробей
 	else if (f1Copy.getDenominator() != f2Copy.getDenominator() && f1Copy.getWhole() == 0 && f2Copy.getWhole() == 0)
 	{
-		int nok = f1.LCM(f1Copy.getDenominator(), f2Copy.getDenominator());
+		int nok = LCM(f1Copy.getDenominator(), f2Copy.getDenominator());
 
 		result.setNumerator((nok / f1Copy.getDenominator() * f1Copy.getNumerator()) - (nok / f2Copy.getDenominator() * f2Copy.getNumerator()));
 		result.setDenominator(nok);
